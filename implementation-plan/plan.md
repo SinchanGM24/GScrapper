@@ -141,11 +141,11 @@ Tasks:
 
 Tasks:
 
-- [ ] T033 [Plan:8.1] Tambahkan Playwright smoke flow import fixture, lihat overview, filter prospects, buka detail, dan export CSV di `analyzer/e2e/`.
-- [ ] T034 [P] [Plan:8.1] Jalankan required domain tests untuk normalization, deduplication, scoring boundaries, import/export edge cases, dan dataset merge.
+- [x] T033 [Plan:8.1] Tambahkan Playwright smoke flow import fixture, lihat overview, filter prospects, buka detail, dan export CSV di `analyzer/e2e/`.
+- [x] T034 [P] [Plan:8.1] Jalankan required domain tests untuk normalization, deduplication, scoring boundaries, import/export edge cases, dan dataset merge.
 - [ ] T035 [P] [Plan:8.2] Verifikasi extension secara manual pada Chrome dengan page hasil Google Maps, partial result, duplicate collection, JSON export, dan CSV export.
-- [ ] T036 [Plan:8.2] Jalankan typecheck, lint, test, build dengan GitHub Pages base path, lalu validasi output static di `analyzer/dist/`.
-- [ ] T037 [Plan:8.2] Tambahkan GitHub Actions workflow untuk check dan deploy static Analyzer tanpa backend.
+- [x] T036 [Plan:8.2] Jalankan typecheck, lint, test, build dengan GitHub Pages base path, lalu validasi output static di `analyzer/dist/`.
+- [x] T037 [Plan:8.2] Tambahkan GitHub Actions workflow untuk check dan deploy static Analyzer tanpa backend.
 
 ## Project Structure
 

@@ -6,9 +6,9 @@ metadata:
 
 summary:
   total_tasks_in_batch: 37
-  completed_tasks: 32
-  pending_tasks: 5
-  completion_percentage: 86.49
+  completed_tasks: 36
+  pending_tasks: 1
+  completion_percentage: 97.30
 
 completed:
   - task_id: "T001"
@@ -75,8 +75,18 @@ completed:
     evidence: ["GScrapper Extension/README.md", "GScrapper Extension/fixtures/sample-dataset.json", "GScrapper Extension/fixtures/sample-dataset.csv"]
   - task_id: "T032"
     evidence: ["analyzer/src/import-export/extension-fixture.test.ts"]
+  - task_id: "T033"
+    evidence: ["analyzer/e2e/smoke.spec.ts", "analyzer/playwright.config.ts"]
+  - task_id: "T034"
+    evidence: ["analyzer/src/domain/*.test.ts", "analyzer/src/import-export/*.test.ts"]
+  - task_id: "T036"
+    evidence: ["analyzer/dist/", "analyzer/vite.config.ts"]
+  - task_id: "T037"
+    evidence: [".github/workflows/analyzer-pages.yml"]
 
 pending:
+  - task_id: "T035"
+    reason: "Requires manual Chrome test against a live Google Maps result page."
   - task_id: "T033"
     reason: "Playwright smoke flow pending."
   - task_id: "T034"
