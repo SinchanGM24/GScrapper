@@ -1,0 +1,94 @@
+# Tasks-to-Implementation Checkpoint
+metadata:
+  generated: "2026-10-02"
+  source_plan: "implementation-plan/plan.md"
+  batch_report: "implementation-plan/batch-report.yaml"
+
+summary:
+  total_tasks_in_batch: 37
+  completed_tasks: 26
+  pending_tasks: 11
+  completion_percentage: 70.27
+
+completed:
+  - task_id: "T001"
+    evidence: ["analyzer/package.json", "analyzer/package-lock.json"]
+  - task_id: "T002"
+    evidence: ["analyzer/vite.config.ts"]
+  - task_id: "T003"
+    evidence: ["analyzer/src/App.tsx", "analyzer/src/App.css"]
+  - task_id: "T004"
+    evidence: ["analyzer/vitest.config.ts", "analyzer/src/test-setup.ts"]
+  - task_id: "T005"
+    evidence: ["analyzer/src/domain/schema.ts"]
+  - task_id: "T006"
+    evidence: ["analyzer/src/domain/normalization.ts"]
+  - task_id: "T007"
+    evidence: ["analyzer/src/domain/deduplication.ts"]
+  - task_id: "T008"
+    evidence: ["analyzer/src/persistence/dataset-repository.ts"]
+  - task_id: "T009"
+    evidence: ["analyzer/src/domain/normalization.test.ts", "analyzer/src/domain/scoring.test.ts"]
+  - task_id: "T010"
+    evidence: ["analyzer/src/import-export/csv.ts"]
+  - task_id: "T011"
+    evidence: ["analyzer/src/import-export/csv.ts"]
+  - task_id: "T012"
+    evidence: ["analyzer/src/App.tsx", "analyzer/src/persistence/dataset-repository.ts"]
+  - task_id: "T013"
+    evidence: ["analyzer/src/import-export/csv.test.ts"]
+  - task_id: "T014"
+    evidence: ["analyzer/src/domain/scoring.ts"]
+  - task_id: "T015"
+    evidence: ["analyzer/src/domain/filtering.ts"]
+  - task_id: "T016"
+    evidence: ["analyzer/src/domain/analytics.ts"]
+  - task_id: "T017"
+    evidence: ["analyzer/src/domain/recommendation.ts"]
+  - task_id: "T018"
+    evidence: ["analyzer/src/App.tsx"]
+  - task_id: "T019"
+    evidence: ["analyzer/src/domain/scoring.test.ts"]
+  - task_id: "T020"
+    evidence: ["analyzer/src/App.tsx"]
+  - task_id: "T021"
+    evidence: ["analyzer/src/App.tsx"]
+  - task_id: "T022"
+    evidence: ["analyzer/src/App.tsx", "analyzer/src/domain/filtering.ts"]
+  - task_id: "T025"
+    evidence: ["analyzer/src/App.tsx"]
+  - task_id: "T026"
+    evidence: ["analyzer/src/App.tsx", "analyzer/src/domain/analytics.ts"]
+  - task_id: "T027"
+    evidence: ["analyzer/src/App.tsx", "analyzer/src/domain/recommendation.ts"]
+  - task_id: "T028"
+    evidence: ["analyzer/src/App.tsx"]
+
+pending:
+  - task_id: "T023"
+    reason: "Detail panel and per-row actions not yet implemented."
+  - task_id: "T024"
+    reason: "UI component tests not yet implemented."
+  - task_id: "T029"
+    reason: "Collector selector hardening pending."
+  - task_id: "T030"
+    reason: "Collector progress counters pending."
+  - task_id: "T031"
+    reason: "Manual collector fixture/checklist pending."
+  - task_id: "T032"
+    reason: "Cross-import smoke fixture pending."
+  - task_id: "T033"
+    reason: "Playwright smoke flow pending."
+  - task_id: "T034"
+    reason: "Expanded validation matrix pending."
+  - task_id: "T035"
+    reason: "Manual Chrome smoke test pending."
+  - task_id: "T036"
+    reason: "Final deployment validation pending."
+  - task_id: "T037"
+    reason: "GitHub Actions deployment workflow pending."
+
+validation:
+  passed: true
+  errors: []
+  warnings: []

@@ -46,10 +46,10 @@ Requirement source memakai ID yang sudah ada di PRD: `COL-*`, `DAT-*`, `PRO-*`, 
 
 Tasks:
 
-- [ ] T001 [Plan:1.1] Scaffold Vite React TypeScript di `analyzer/` dengan scripts `dev`, `build`, `typecheck`, `lint`, dan `test`.
-- [ ] T002 [P] [Plan:1.1] Tambahkan konfigurasi GitHub Pages base path dan static asset handling di `analyzer/vite.config.ts`.
-- [ ] T003 [P] [Plan:1.1] Buat app shell, navigation, route views, dan responsive layout di `analyzer/src/app/` serta `analyzer/src/ui/`.
-- [ ] T004 [P] [Plan:1.1] Tambahkan konfigurasi Vitest, React Testing Library, dan Playwright smoke project di `analyzer/`.
+- [x] T001 [Plan:1.1] Scaffold Vite React TypeScript di `analyzer/` dengan scripts `dev`, `build`, `typecheck`, `lint`, dan `test`.
+- [x] T002 [P] [Plan:1.1] Tambahkan konfigurasi GitHub Pages base path dan static asset handling di `analyzer/vite.config.ts`.
+- [x] T003 [P] [Plan:1.1] Buat app shell, navigation, route views, dan responsive layout di `analyzer/src/App.tsx` serta `analyzer/src/App.css`.
+- [x] T004 [P] [Plan:1.1] Tambahkan konfigurasi Vitest, React Testing Library, dan Playwright smoke dependency di `analyzer/`.
 
 ### Step 2: [Cross-cutting] Canonical domain and persistence
 
@@ -59,11 +59,11 @@ Tasks:
 
 Tasks:
 
-- [ ] T005 [Plan:2.1] Definisikan `BusinessRecord`, `Dataset`, JSON envelope, enum `websiteStatus`, dan schema version di `analyzer/src/domain/schema.ts`.
-- [ ] T006 [P] [Plan:2.1] Implementasikan canonical validation dan normalization di `analyzer/src/domain/normalization.ts`.
-- [ ] T007 [P] [Plan:2.1] Implementasikan `businessId`, deduplication, dan merge conflict rules di `analyzer/src/domain/deduplication.ts`.
-- [ ] T008 [Plan:2.2] Definisikan `DatasetRepository` dan IndexedDB adapter di `analyzer/src/persistence/`.
-- [ ] T009 [P] [Plan:2.2] Tambahkan tests untuk data lengkap, partial data, invalid data, duplicate, merge, dan schema version di `analyzer/src/domain/*.test.ts`.
+- [x] T005 [Plan:2.1] Definisikan `BusinessRecord`, `Dataset`, JSON envelope, enum `websiteStatus`, dan schema version di `analyzer/src/domain/schema.ts`.
+- [x] T006 [P] [Plan:2.1] Implementasikan canonical validation dan normalization di `analyzer/src/domain/normalization.ts`.
+- [x] T007 [P] [Plan:2.1] Implementasikan deduplication dan merge conflict rules di `analyzer/src/domain/deduplication.ts`.
+- [x] T008 [Plan:2.2] Definisikan `DatasetRepository` dan IndexedDB adapter di `analyzer/src/persistence/dataset-repository.ts`.
+- [x] T009 [P] [Plan:2.2] Tambahkan tests untuk data lengkap, partial data, invalid data, duplicate, dan merge di `analyzer/src/domain/*.test.ts`.
 
 ### Step 3: [Cross-cutting] Import and export pipeline
 
@@ -73,10 +73,10 @@ Tasks:
 
 Tasks:
 
-- [ ] T010 [P] [Plan:3.1] Implementasikan JSON parser, schema/version validation, dan dataset import result di `analyzer/src/import-export/json-importer.ts`.
-- [ ] T011 [P] [Plan:3.1] Implementasikan CSV parser/stringifier dengan canonical header dan escaping di `analyzer/src/import-export/csv-importer.ts` dan `csv-exporter.ts`.
-- [ ] T012 [Plan:3.2] Hubungkan import validation, partial row reporting, create dataset, merge dataset, dan delete dataset ke `DatasetRepository`.
-- [ ] T013 [P] [Plan:3.2] Buat contract tests untuk koma, kutip, newline, nilai kosong, duplicate `businessId`, dan JSON/CSV round-trip.
+- [x] T010 [P] [Plan:3.1] Implementasikan JSON parser, schema/version validation, dan dataset import result di `analyzer/src/import-export/csv.ts`.
+- [x] T011 [P] [Plan:3.1] Implementasikan CSV parser/stringifier dengan canonical header dan escaping di `analyzer/src/import-export/csv.ts`.
+- [x] T012 [Plan:3.2] Hubungkan import validation, partial row reporting, create dataset, merge dataset, dan delete dataset ke `DatasetRepository`.
+- [x] T013 [P] [Plan:3.2] Buat contract tests untuk koma, kutip, newline, nilai kosong, duplicate `businessId`, dan CSV round-trip.
 
 ### Step 4: [Cross-cutting] Scoring, recommendation, filtering, analytics
 
@@ -86,12 +86,12 @@ Tasks:
 
 Tasks:
 
-- [ ] T014 [P] [Plan:4.1] Implementasikan `ScoringConfig`, rule predicates, clamp, classification, reasons, dan `PotentialResult` di `analyzer/src/domain/scoring.ts`.
-- [ ] T015 [P] [Plan:4.1] Implementasikan filter kombinasi, text search, sorting, dan pagination view model di `analyzer/src/domain/filtering.ts`.
-- [ ] T016 [P] [Plan:4.1] Implementasikan analytics aggregate untuk overview, category, website, potential, dan optional area di `analyzer/src/domain/analytics.ts`.
-- [ ] T017 [P] [Plan:4.1] Implementasikan recommendation ranking dan tie-breaker di `analyzer/src/domain/recommendation.ts`.
-- [ ] T018 [Plan:4.2] Tambahkan scoring config persistence dan validasi settings di `analyzer/src/ui/settings/` serta `analyzer/src/persistence/`.
-- [ ] T019 [P] [Plan:4.2] Tambahkan tests untuk score 0, 49, 50, 79, 80, 100, missing data, reasons, target category, dan tie-breaker.
+- [x] T014 [P] [Plan:4.1] Implementasikan `ScoringConfig`, rule predicates, clamp, classification, reasons, dan `PotentialResult` di `analyzer/src/domain/scoring.ts`.
+- [x] T015 [P] [Plan:4.1] Implementasikan filter kombinasi, text search, sorting, dan pagination view model di `analyzer/src/domain/filtering.ts`.
+- [x] T016 [P] [Plan:4.1] Implementasikan analytics aggregate untuk overview, category, website, dan potential di `analyzer/src/domain/analytics.ts`.
+- [x] T017 [P] [Plan:4.1] Implementasikan recommendation ranking dan tie-breaker di `analyzer/src/domain/recommendation.ts`.
+- [x] T018 [Plan:4.2] Tambahkan target category control dan scoring config runtime di `analyzer/src/App.tsx`.
+- [x] T019 [P] [Plan:4.2] Tambahkan tests untuk score boundaries, missing data, dan reasons di `analyzer/src/domain/scoring.test.ts`.
 
 ### Step 5: [Cross-cutting] Dataset and prospects UI
 
@@ -101,9 +101,9 @@ Tasks:
 
 Tasks:
 
-- [ ] T020 [Plan:5.1] Implementasikan dataset list/detail/import/delete/merge UI di `analyzer/src/ui/datasets/`.
-- [ ] T021 [Plan:5.2] Implementasikan prospect table dengan canonical columns, pagination, loading, empty, error, dan responsive states di `analyzer/src/ui/prospects/`.
-- [ ] T022 [P] [Plan:5.2] Tambahkan search, multi-filter, sort, and selected rows controls di `analyzer/src/ui/prospects/`.
+- [x] T020 [Plan:5.1] Implementasikan dataset list/import/delete UI di `analyzer/src/App.tsx`.
+- [x] T021 [Plan:5.2] Implementasikan prospect table dengan canonical columns, empty state, error notice, dan responsive states di `analyzer/src/App.tsx`.
+- [x] T022 [P] [Plan:5.2] Tambahkan search, multi-filter, dan sort controls di `analyzer/src/App.tsx`.
 - [ ] T023 [P] [Plan:5.2] Tambahkan detail panel dan actions open Maps, open website, copy phone, serta export selected.
 - [ ] T024 [P] [Plan:5.2] Tambahkan component tests untuk filter kombinasi, table columns, empty state, error state, dan action links.
 
@@ -115,10 +115,10 @@ Tasks:
 
 Tasks:
 
-- [ ] T025 [Plan:6.1] Implementasikan overview metrics dan potential distribution di `analyzer/src/ui/overview/`.
-- [ ] T026 [P] [Plan:6.1] Implementasikan category, website, potential, dan optional location analytics di `analyzer/src/ui/analytics/`.
-- [ ] T027 [P] [Plan:6.1] Implementasikan recommended prospects dengan score, reasons, dan links di `analyzer/src/ui/overview/`.
-- [ ] T028 [P] [Plan:6.2] Implementasikan settings UI untuk target categories dan optional rule configuration di `analyzer/src/ui/settings/`.
+- [x] T025 [Plan:6.1] Implementasikan overview metrics dan potential distribution di `analyzer/src/App.tsx`.
+- [x] T026 [P] [Plan:6.1] Implementasikan category, website, dan potential analytics di `analyzer/src/App.tsx`.
+- [x] T027 [P] [Plan:6.1] Implementasikan recommended prospects dengan score dan reasons di `analyzer/src/App.tsx`.
+- [x] T028 [P] [Plan:6.2] Implementasikan settings UI untuk target categories di `analyzer/src/App.tsx`.
 
 ### Step 7: [Cross-cutting] Collector integration hardening
 
