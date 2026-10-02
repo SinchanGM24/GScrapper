@@ -1,0 +1,138 @@
+# Plan-to-Tasks Traceability Checkpoint
+metadata:
+  generated: "2026-10-02"
+  source_plan: "implementation-plan/plan.md"
+  target_tasks: "implementation-plan/plan.md#tasks"
+
+summary:
+  total_plan_items: 16
+  covered_plan_items: 16
+  missing_plan_items: 0
+  coverage_percentage: 100.0
+  total_tasks_generated: 37
+  orphan_tasks: 0
+
+phases:
+  - phase_id: "Step-1"
+    phase_name: "Analyzer project scaffold"
+    items:
+      - item_id: "1.1"
+        description: "Scaffold Analyzer and app shell"
+        tasks: ["T001", "T002", "T003", "T004"]
+  - phase_id: "Step-2"
+    phase_name: "Canonical domain and persistence"
+    items:
+      - item_id: "2.1"
+        description: "Canonical types, normalization, and deduplication"
+        tasks: ["T005", "T006", "T007", "T009"]
+      - item_id: "2.2"
+        description: "Repository and IndexedDB adapter"
+        tasks: ["T008", "T009"]
+  - phase_id: "Step-3"
+    phase_name: "Import and export pipeline"
+    items:
+      - item_id: "3.1"
+        description: "JSON and CSV parser/exporter"
+        tasks: ["T010", "T011", "T013"]
+      - item_id: "3.2"
+        description: "Import merge and partial errors"
+        tasks: ["T012", "T013"]
+  - phase_id: "Step-4"
+    phase_name: "Scoring, recommendation, filtering, analytics"
+    items:
+      - item_id: "4.1"
+        description: "Domain services"
+        tasks: ["T014", "T015", "T016", "T017", "T019"]
+      - item_id: "4.2"
+        description: "Scoring settings validation"
+        tasks: ["T018", "T019"]
+  - phase_id: "Step-5"
+    phase_name: "Dataset and prospects UI"
+    items:
+      - item_id: "5.1"
+        description: "Dataset management UI"
+        tasks: ["T020"]
+      - item_id: "5.2"
+        description: "Prospect table and actions"
+        tasks: ["T021", "T022", "T023", "T024"]
+  - phase_id: "Step-6"
+    phase_name: "Overview, analytics, recommendation, settings UI"
+    items:
+      - item_id: "6.1"
+        description: "Overview, analytics, recommendations"
+        tasks: ["T025", "T026", "T027"]
+      - item_id: "6.2"
+        description: "Settings UI"
+        tasks: ["T028"]
+  - phase_id: "Step-7"
+    phase_name: "Collector integration hardening"
+    items:
+      - item_id: "7.1"
+        description: "Extractor and progress hardening"
+        tasks: ["T029", "T030"]
+      - item_id: "7.2"
+        description: "Collector smoke and Analyzer import"
+        tasks: ["T031", "T032"]
+  - phase_id: "Step-8"
+    phase_name: "Validation and deployment"
+    items:
+      - item_id: "8.1"
+        description: "End-to-end and domain validation"
+        tasks: ["T033", "T034"]
+      - item_id: "8.2"
+        description: "Extension validation and deployment"
+        tasks: ["T035", "T036", "T037"]
+
+missing_plan_items: []
+orphan_tasks: []
+upstream_trace:
+  - plan_item: "1.1"
+    source_requirements: ["DAT-01", "DAT-02", "PRO-01", "PRO-02", "ANA-03", "ANA-04", "ANA-05", "ANA-06", "ANA-07"]
+    tasks: ["T001", "T002", "T003", "T004"]
+  - plan_item: "2.1"
+    source_requirements: ["COL-03", "COL-04", "DAT-04", "ANA-01", "ANA-02"]
+    tasks: ["T005", "T006", "T007", "T009"]
+  - plan_item: "2.2"
+    source_requirements: ["DAT-02", "DAT-04", "DAT-05"]
+    tasks: ["T008", "T009"]
+  - plan_item: "3.1"
+    source_requirements: ["COL-06", "DAT-01", "DAT-06"]
+    tasks: ["T010", "T011", "T013"]
+  - plan_item: "3.2"
+    source_requirements: ["DAT-04", "DAT-06"]
+    tasks: ["T012", "T013"]
+  - plan_item: "4.1"
+    source_requirements: ["ANA-01", "ANA-02", "ANA-03", "ANA-04", "ANA-05", "ANA-07", "PRO-02", "PRO-04"]
+    tasks: ["T014", "T015", "T016", "T017", "T019"]
+  - plan_item: "4.2"
+    source_requirements: ["ANA-06"]
+    tasks: ["T018", "T019"]
+  - plan_item: "5.1"
+    source_requirements: ["DAT-03", "DAT-04", "DAT-05"]
+    tasks: ["T020"]
+  - plan_item: "5.2"
+    source_requirements: ["PRO-01", "PRO-02", "PRO-03", "PRO-04", "DAT-06"]
+    tasks: ["T021", "T022", "T023", "T024"]
+  - plan_item: "6.1"
+    source_requirements: ["ANA-03", "ANA-04", "ANA-05", "ANA-07"]
+    tasks: ["T025", "T026", "T027"]
+  - plan_item: "6.2"
+    source_requirements: ["ANA-06"]
+    tasks: ["T028"]
+  - plan_item: "7.1"
+    source_requirements: ["COL-01", "COL-02", "COL-03", "COL-04", "COL-05", "COL-07"]
+    tasks: ["T029", "T030"]
+  - plan_item: "7.2"
+    source_requirements: ["COL-06", "DAT-01"]
+    tasks: ["T031", "T032"]
+  - plan_item: "8.1"
+    source_requirements: ["COL-05", "DAT-01", "DAT-06", "PRO-01", "PRO-02", "PRO-04", "ANA-01", "ANA-02", "ANA-03", "ANA-04", "ANA-05"]
+    tasks: ["T033", "T034"]
+  - plan_item: "8.2"
+    source_requirements: ["COL-05", "COL-06", "DAT-02"]
+    tasks: ["T035", "T036", "T037"]
+
+validation:
+  passed: true
+  errors: []
+  warnings: []

@@ -1,0 +1,165 @@
+# Spec-to-Plan Traceability Checkpoint
+metadata:
+  generated: "2026-10-02"
+  source_spec: "PRD.md"
+  target_plan: "implementation-plan/plan.md"
+
+summary:
+  total_requirements: 24
+  covered_requirements: 24
+  missing_requirements: 0
+  coverage_percentage: 100.0
+
+requirements:
+  - req_id: "COL-01"
+    req_description: "Menggunakan Chrome Extension Manifest V3."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-7"
+      items: ["7.1"]
+  - req_id: "COL-02"
+    req_description: "Mengambil field bisnis inti bila tersedia."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-7"
+      items: ["7.1"]
+  - req_id: "COL-03"
+    req_description: "Menormalisasi field inti."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-2"
+      items: ["2.1"]
+  - req_id: "COL-04"
+    req_description: "Mencegah duplicate berdasarkan businessId."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-2"
+      items: ["2.1"]
+  - req_id: "COL-05"
+    req_description: "Progress dan partial error collection."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-7"
+      items: ["7.1", "8.1"]
+  - req_id: "COL-06"
+    req_description: "Export JSON dan CSV."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-3"
+      items: ["3.1"]
+  - req_id: "COL-07"
+    req_description: "Field tambahan hanya bila reliable."
+    priority: "Should"
+    plan_mapping:
+      phase: "Step-7"
+      items: ["7.1"]
+  - req_id: "DAT-01"
+    req_description: "Import JSON dan CSV."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-3"
+      items: ["3.1"]
+  - req_id: "DAT-02"
+    req_description: "Menyimpan dataset di browser tanpa backend."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-2"
+      items: ["2.2"]
+  - req_id: "DAT-03"
+    req_description: "Metadata dataset terlihat."
+    priority: "Should"
+    plan_mapping:
+      phase: "Step-5"
+      items: ["5.1"]
+  - req_id: "DAT-04"
+    req_description: "Merge dan deduplicate dataset."
+    priority: "Should"
+    plan_mapping:
+      phase: "Step-2"
+      items: ["2.1", "2.2"]
+  - req_id: "DAT-05"
+    req_description: "Menghapus dataset."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-5"
+      items: ["5.1"]
+  - req_id: "DAT-06"
+    req_description: "Export data lengkap atau terfilter."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-3"
+      items: ["3.1", "5.2"]
+  - req_id: "PRO-01"
+    req_description: "Prospect table dengan field utama."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-5"
+      items: ["5.2"]
+  - req_id: "PRO-02"
+    req_description: "Search, filter, sort, pagination/virtualization."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-5"
+      items: ["5.2"]
+  - req_id: "PRO-03"
+    req_description: "Detail dan action prospect."
+    priority: "Should"
+    plan_mapping:
+      phase: "Step-5"
+      items: ["5.2"]
+  - req_id: "PRO-04"
+    req_description: "Kombinasi filter."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-4"
+      items: ["4.1"]
+  - req_id: "ANA-01"
+    req_description: "Deterministic rule-based scoring."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-4"
+      items: ["4.1"]
+  - req_id: "ANA-02"
+    req_description: "Reason berasal dari rule terpenuhi."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-4"
+      items: ["4.1"]
+  - req_id: "ANA-03"
+    req_description: "Overview metrics."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-6"
+      items: ["6.1"]
+  - req_id: "ANA-04"
+    req_description: "Category, website, potential analytics."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-6"
+      items: ["6.1"]
+  - req_id: "ANA-05"
+    req_description: "Recommended prospects dengan tie-breaker."
+    priority: "Must"
+    plan_mapping:
+      phase: "Step-6"
+      items: ["6.1"]
+  - req_id: "ANA-06"
+    req_description: "Configurable target category dan scoring rules."
+    priority: "Should"
+    plan_mapping:
+      phase: "Step-6"
+      items: ["6.2"]
+  - req_id: "ANA-07"
+    req_description: "Optional location analytics."
+    priority: "Should"
+    plan_mapping:
+      phase: "Step-6"
+      items: ["6.1"]
+
+missing_requirements: []
+orphan_plan_items: []
+validation:
+  passed: true
+  errors: []
+  warnings:
+    - "PRD uses COL/DAT/PRO/ANA IDs rather than REQ-XXX IDs; mapping preserves the existing authoritative identifiers."
