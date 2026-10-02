@@ -4,7 +4,7 @@ import { deduplicateBusinesses } from "../domain/deduplication";
 import { normalizeBusiness, parseEnvelope } from "../domain/normalization";
 
 export const csvHeaders = [
-  "businessId", "name", "category", "address", "phone", "website", "websiteStatus", "mapsUrl",
+  "businessId", "name", "category", "address", "phone", "socialMedia", "website", "websiteStatus", "mapsUrl",
   "rating", "reviewCount", "openingHours", "businessStatus", "latitude", "longitude", "placeId", "area", "collectedAt",
 ] as const;
 

@@ -8,6 +8,7 @@ export interface BusinessRecord {
   category: string | null;
   address: string | null;
   phone: string | null;
+  socialMedia: string[] | null;
   website: string | null;
   websiteStatus: WebsiteStatus;
   mapsUrl: string | null;
@@ -54,6 +55,7 @@ export interface ScoringConfig {
     noWebsite: number;
     targetCategory: number;
     phoneAvailable: number;
+    socialMediaAvailable: number;
     ratingAtLeast4: number;
     reviewsAtLeast100: number;
     reviewsAtLeast500: number;
@@ -69,12 +71,13 @@ export const defaultScoringConfig: ScoringConfig = {
   configVersion: "1.0",
   targetCategories: [],
   rules: {
-    noWebsite: 40,
-    targetCategory: 20,
-    phoneAvailable: 10,
-    ratingAtLeast4: 10,
-    reviewsAtLeast100: 10,
-    reviewsAtLeast500: 10,
+    noWebsite: 25,
+    targetCategory: 15,
+    phoneAvailable: 25,
+    socialMediaAvailable: 20,
+    ratingAtLeast4: 5,
+    reviewsAtLeast100: 5,
+    reviewsAtLeast500: 5,
   },
   thresholds: { lowMax: 49, mediumMax: 79, highMax: 100 },
 };
@@ -86,6 +89,7 @@ export function createEmptyBusiness(): BusinessRecord {
     category: null,
     address: null,
     phone: null,
+    socialMedia: null,
     website: null,
     websiteStatus: "unknown",
     mapsUrl: null,

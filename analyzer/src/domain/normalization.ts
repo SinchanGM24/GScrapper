@@ -48,6 +48,7 @@ export function normalizeBusiness(input: Partial<BusinessRecord>): BusinessRecor
     category: cleanText(business.category),
     address: cleanText(business.address),
     phone: cleanText(business.phone),
+    socialMedia: Array.isArray(business.socialMedia) ? business.socialMedia.map((url) => normalizeUrl(url)).filter((url): url is string => Boolean(url)) : null,
     website,
     websiteStatus: normalizeWebsiteStatus(business.websiteStatus, website),
     mapsUrl: normalizeUrl(business.mapsUrl),

@@ -9,12 +9,13 @@ type Rule = {
 };
 
 const rules: Rule[] = [
-  { id: "noWebsite", points: 40, reason: "Tidak memiliki website", matches: (b) => b.websiteStatus === "none" },
-  { id: "targetCategory", points: 20, reason: "Termasuk kategori target", matches: (b, c) => Boolean(b.category && c.targetCategories.some((target) => target.trim().toLowerCase() === b.category?.trim().toLowerCase())) },
-  { id: "phoneAvailable", points: 10, reason: "Memiliki nomor telepon", matches: (b) => Boolean(b.phone) },
-  { id: "ratingAtLeast4", points: 10, reason: "Rating minimal 4.0", matches: (b) => b.rating !== null && b.rating >= 4 },
-  { id: "reviewsAtLeast100", points: 10, reason: "Memiliki minimal 100 reviews", matches: (b) => b.reviewCount !== null && b.reviewCount >= 100 },
-  { id: "reviewsAtLeast500", points: 10, reason: "Memiliki minimal 500 reviews", matches: (b) => b.reviewCount !== null && b.reviewCount >= 500 },
+  { id: "noWebsite", points: 25, reason: "Tidak memiliki website", matches: (b) => b.websiteStatus === "none" },
+  { id: "phoneAvailable", points: 25, reason: "Memiliki nomor telepon", matches: (b) => Boolean(b.phone) },
+  { id: "socialMediaAvailable", points: 20, reason: "Memiliki akun sosial media", matches: (b) => Boolean(b.socialMedia?.length) },
+  { id: "targetCategory", points: 15, reason: "Termasuk kategori target", matches: (b, c) => Boolean(b.category && c.targetCategories.some((target) => target.trim().toLowerCase() === b.category?.trim().toLowerCase())) },
+  { id: "ratingAtLeast4", points: 5, reason: "Rating minimal 4.0", matches: (b) => b.rating !== null && b.rating >= 4 },
+  { id: "reviewsAtLeast100", points: 5, reason: "Memiliki minimal 100 reviews", matches: (b) => b.reviewCount !== null && b.reviewCount >= 100 },
+  { id: "reviewsAtLeast500", points: 5, reason: "Memiliki minimal 500 reviews", matches: (b) => b.reviewCount !== null && b.reviewCount >= 500 },
 ];
 
 export function classifyScore(score: number, config: ScoringConfig = defaultScoringConfig): Potential {

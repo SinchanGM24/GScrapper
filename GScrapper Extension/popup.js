@@ -115,7 +115,7 @@ function createDataset() {
 
 function createCsv(businesses) {
   const headers = [
-    "businessId", "name", "category", "address", "phone", "website", "websiteStatus", "mapsUrl",
+    "businessId", "name", "category", "address", "phone", "socialMedia", "website", "websiteStatus", "mapsUrl",
     "rating", "reviewCount", "openingHours", "businessStatus", "latitude", "longitude", "placeId", "area", "collectedAt"
   ];
   const rows = businesses.map((business) => headers.map((header) => csvValue(business[header])));

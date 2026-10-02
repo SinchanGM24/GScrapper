@@ -54,6 +54,7 @@
       return url && !isGoogleUrl(url) && !url.startsWith("tel:") && !url.startsWith("mailto:");
     });
     const website = websiteAnchor ? normalizeUrl(websiteAnchor.href) : null;
+    const socialMedia = extractSocialMedia(card);
     const text = lines.join(" ");
     const phone = extractPhone(text);
     const rating = extractRating(card, text);
@@ -67,6 +68,7 @@
       category,
       address,
       phone,
+      socialMedia,
       website,
       websiteStatus: website ? "present" : "unknown",
       mapsUrl,
@@ -107,6 +109,14 @@
   function extractPhone(text) {
     const match = text.match(/(?:\+?\d[\d\s().-]{7,}\d)/);
     return match ? cleanText(match[0]) : null;
+  }
+
+  function extractSocialMedia(card) {
+    const supportedHosts = ["instagram.com", "facebook.com", "tiktok.com", "linkedin.com", "youtube.com"];
+    return Array.from(card.querySelectorAll('a[href]'))
+      .map((anchor) => normalizeUrl(anchor.href))
+      .filter((url) => url && supportedHosts.some((host) => new URL(url).hostname.endsWith(host)))
+      .filter((url, index, urls) => urls.indexOf(url) === index);
   }
 
   function extractRating(card, text) {

@@ -64,7 +64,7 @@ Score tidak boleh dipresentasikan sebagai kepastian bahwa bisnis membutuhkan web
 | ID | Requirement | Priority |
 |---|---|---|
 | COL-01 | Menggunakan Chrome Extension Manifest V3. | Must |
-| COL-02 | Mengambil business name, category, address, phone, website, Google Maps URL, rating, dan review count bila tersedia. | Must |
+| COL-02 | Mengambil business name, category, address, phone, public social media profile, website, Google Maps URL, rating, dan review count bila tersedia. | Must |
 | COL-03 | Menormalisasi whitespace, website status, rating numeric, dan review count numeric. | Must |
 | COL-04 | Mencegah duplicate berdasarkan `businessId`. | Must |
 | COL-05 | Menampilkan progress, jumlah berhasil, jumlah duplicate, dan error/partial result. | Must |
@@ -86,7 +86,7 @@ Score tidak boleh dipresentasikan sebagai kepastian bahwa bisnis membutuhkan web
 
 | ID | Requirement | Priority |
 |---|---|---|
-| PRO-01 | Menampilkan business, category, address, phone, website, website status, rating, reviews, potential, score, dan reason. | Must |
+| PRO-01 | Menampilkan business, category, address, phone, social media, website, website status, rating, reviews, potential, score, dan reason. | Must |
 | PRO-02 | Mendukung search, filter, sorting, dan pagination atau virtualized list. | Must |
 | PRO-03 | Mendukung view details, open Google Maps, open website, copy phone, dan export selected. | Should |
 | PRO-04 | Mendukung kombinasi filter, misalnya `No Website + High + Cafe`. | Must |
@@ -106,6 +106,8 @@ Score tidak boleh dipresentasikan sebagai kepastian bahwa bisnis membutuhkan web
 ## 8. Potential Semantics
 
 Potential adalah indikator prioritas berdasarkan data yang tersedia, bukan prediksi pasti kebutuhan bisnis. UI harus menggunakan bahasa seperti **Potential berdasarkan indikator yang tersedia** dan menghindari klaim seperti **bisnis ini pasti membutuhkan website**.
+
+Prioritas scoring dimulai dari kemungkinan user dapat menghubungi bisnis: status website, nomor telepon, dan social media. Rating dan jumlah review menjadi sinyal pendukung setelah contactability.
 
 Rule, bobot, threshold, missing-data behavior, dan reason didefinisikan di `SCORING.md`.
 

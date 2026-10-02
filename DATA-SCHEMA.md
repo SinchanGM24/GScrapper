@@ -53,6 +53,7 @@
   "category": "Cafe",
   "address": "Jl. Contoh No. 1, Mataram",
   "phone": "+62 812 0000 0000",
+  "socialMedia": ["https://instagram.com/cafeabc"],
   "website": null,
   "websiteStatus": "none",
   "mapsUrl": "https://www.google.com/maps/place/...",
@@ -77,6 +78,7 @@
 | `category` | string or null | no | Primary category bila tersedia. |
 | `address` | string or null | no | Trimmed display address. |
 | `phone` | string or null | no | Normalized display phone; no invented number. |
+| `socialMedia` | URL string array or null | no | Public social profile URLs bila reliable dan tersedia. |
 | `website` | URL string or null | no | Canonical URL bila valid dan tersedia. |
 | `websiteStatus` | enum | yes | `present`, `none`, atau `unknown`. |
 | `mapsUrl` | URL string or null | no | Google Maps URL bila tersedia. |
@@ -120,6 +122,7 @@ Deduplication:
 - Review count seperti `1,234 reviews`, `1.2K`, atau `500+` dinormalisasi menjadi integer sesuai informasi yang tersedia; jika tidak reliable, gunakan `null`.
 - URL website diberi scheme `https://` bila host valid tanpa scheme.
 - Nomor telepon dibersihkan dari whitespace berlebih tetapi format display yang dapat dibaca dipertahankan.
+- Social profile hanya disimpan dari host yang dikenali dan URL yang valid; jangan menebak akun dari nama bisnis.
 - Field tidak tersedia menjadi `null`, bukan string `N/A`.
 - Category comparison untuk scoring bersifat case-insensitive dan trim whitespace.
 
@@ -128,7 +131,7 @@ Deduplication:
 CSV wajib memiliki header berikut dalam urutan canonical:
 
 ```text
-businessId,name,category,address,phone,website,websiteStatus,mapsUrl,rating,reviewCount,openingHours,businessStatus,latitude,longitude,placeId,area,collectedAt
+businessId,name,category,address,phone,socialMedia,website,websiteStatus,mapsUrl,rating,reviewCount,openingHours,businessStatus,latitude,longitude,placeId,area,collectedAt
 ```
 
 Dataset metadata dapat disimpan pada JSON; untuk CSV, metadata opsional dapat ditambahkan sebagai file companion atau tidak disertakan. Import CSV harus tetap menghasilkan dataset metadata default dengan `source: manual-import`.
