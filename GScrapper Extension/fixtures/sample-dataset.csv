@@ -1,0 +1,2 @@
+businessId,name,category,address,phone,website,websiteStatus,mapsUrl,rating,reviewCount,openingHours,businessStatus,latitude,longitude,placeId,area,collectedAt
+mapsurl_fixture_cafe_abc,"Cafe ABC","Cafe","Jl. Contoh No. 1, Mataram","+62 812 0000 0000",,none,"https://www.google.com/maps/place/Cafe+ABC",4.6,327,,,,,,Mataram,2026-10-02T10:00:00Z

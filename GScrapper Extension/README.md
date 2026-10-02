@@ -11,6 +11,8 @@ Chrome Extension Manifest V3 untuk mengumpulkan bisnis yang terlihat pada halama
 5. Buka halaman hasil Google Maps, misalnya pencarian `Cafe Mataram`.
 6. Klik icon **GMap Collector** pada toolbar Chrome.
 
+Fixture integrasi Analyzer tersedia di `fixtures/sample-dataset.json` dan `fixtures/sample-dataset.csv`.
+
 ## Penggunaan
 
 1. Isi nama dataset, keyword, dan lokasi bila diperlukan.
@@ -19,6 +21,8 @@ Chrome Extension Manifest V3 untuk mengumpulkan bisnis yang terlihat pada halama
 4. Scroll halaman Google Maps terlebih dahulu bila ingin memuat lebih banyak hasil, lalu jalankan collection lagi.
 5. Duplicate berdasarkan `businessId` tidak akan ditambahkan kembali.
 6. Export dataset sebagai JSON untuk Analyzer atau CSV untuk spreadsheet.
+
+Popup menampilkan jumlah card yang diproses, record baru yang terkumpul, duplicate yang dilewati, dan record yang gagal dibaca.
 
 ## Data yang Dikumpulkan
 

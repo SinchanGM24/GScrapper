@@ -7,8 +7,8 @@
     }
 
     try {
-      const businesses = collectVisibleBusinesses();
-      sendResponse({ ok: true, businesses });
+      const result = collectVisibleBusinesses();
+      sendResponse({ ok: true, ...result });
     } catch (error) {
       sendResponse({ ok: false, error: error.message });
     }
@@ -18,12 +18,14 @@
     const links = Array.from(document.querySelectorAll('a[href*="/maps/place/"]'));
     const records = [];
     const seen = new Set();
+    let failed = 0;
 
     for (const link of links) {
       const card = findBusinessCard(link);
       const record = extractBusiness(link, card);
 
       if (!record || seen.has(record.businessId)) {
+        if (!record) failed += 1;
         continue;
       }
 
@@ -31,7 +33,7 @@
       records.push(record);
     }
 
-    return records;
+    return { businesses: records, stats: { processed: links.length, failed } };
   }
 
   function findBusinessCard(link) {

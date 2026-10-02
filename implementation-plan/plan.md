@@ -128,10 +128,10 @@ Tasks:
 
 Tasks:
 
-- [ ] T029 [Plan:7.1] Audit dan sesuaikan extractor di `GScrapper Extension/content.js` terhadap selector Google Maps yang tersedia, partial card, dan field canonical.
-- [ ] T030 [Plan:7.1] Perbaiki progress processed/collected/duplicate/failed di `GScrapper Extension/popup.js` dan `popup.html`.
-- [ ] T031 [Plan:7.2] Tambahkan manual Load unpacked smoke checklist dan fixture export di `GScrapper Extension/README.md`.
-- [ ] T032 [Plan:7.2] Jalankan smoke import terhadap JSON/CSV extension di Analyzer dan dokumentasikan hasilnya di test fixture.
+- [x] T029 [Plan:7.1] Audit dan sesuaikan extractor di `GScrapper Extension/content.js` terhadap selector Google Maps yang tersedia, partial card, dan field canonical.
+- [x] T030 [Plan:7.1] Perbaiki progress processed/collected/duplicate/failed di `GScrapper Extension/popup.js` dan `popup.html`.
+- [x] T031 [Plan:7.2] Tambahkan manual Load unpacked smoke checklist dan fixture export di `GScrapper Extension/README.md`.
+- [x] T032 [Plan:7.2] Jalankan smoke import terhadap JSON/CSV extension di Analyzer dan dokumentasikan hasilnya di test fixture.
 
 ### Step 8: [Cross-cutting] Validation and deployment
 

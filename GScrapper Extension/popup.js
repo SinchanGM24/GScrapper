@@ -9,13 +9,17 @@ const elements = {
   exportCsv: document.querySelector("#export-csv"),
   clear: document.querySelector("#clear"),
   status: document.querySelector("#status"),
+  processedCount: document.querySelector("#processed-count"),
   businessCount: document.querySelector("#business-count"),
+  duplicateCount: document.querySelector("#duplicate-count"),
+  failedCount: document.querySelector("#failed-count"),
   lastCollected: document.querySelector("#last-collected")
 };
 
 let state = {
   businesses: [],
-  lastCollectedAt: null
+  lastCollectedAt: null,
+  stats: { processed: 0, collected: 0, duplicate: 0, failed: 0 }
 };
 
 initialize();
@@ -48,14 +52,17 @@ async function collectFromActiveTab() {
       throw new Error(response?.error || "Data tidak dapat dibaca dari halaman ini.");
     }
 
+    const businesses = response.businesses || [];
     const existingIds = new Set(state.businesses.map((business) => business.businessId));
-    const newBusinesses = response.businesses.filter((business) => !existingIds.has(business.businessId));
+    const newBusinesses = businesses.filter((business) => !existingIds.has(business.businessId));
+    const duplicateCount = businesses.length - newBusinesses.length;
+    const failedCount = response.stats?.failed || 0;
     state.businesses = [...state.businesses, ...newBusinesses];
     state.lastCollectedAt = new Date().toISOString();
+    state.stats = { processed: response.stats?.processed || businesses.length, collected: newBusinesses.length, duplicate: duplicateCount, failed: failedCount };
     await saveState();
 
-    const duplicateCount = response.businesses.length - newBusinesses.length;
-    setStatus(`${newBusinesses.length} bisnis ditambahkan, ${duplicateCount} duplicate dilewati.`);
+    setStatus(`${newBusinesses.length} ditambahkan, ${duplicateCount} duplicate, ${failedCount} gagal.`);
   } catch (error) {
     setStatus(error.message, true);
   } finally {
@@ -85,7 +92,7 @@ async function exportDataset(format) {
 }
 
 async function clearDataset() {
-  state = { businesses: [], lastCollectedAt: null };
+  state = { businesses: [], lastCollectedAt: null, stats: { processed: 0, collected: 0, duplicate: 0, failed: 0 } };
   await saveState();
   setStatus("Hasil collection dihapus.");
 }
@@ -131,6 +138,9 @@ async function saveState() {
 
 function updateView() {
   elements.businessCount.textContent = String(state.businesses.length);
+  elements.processedCount.textContent = String(state.stats?.processed || 0);
+  elements.duplicateCount.textContent = String(state.stats?.duplicate || 0);
+  elements.failedCount.textContent = String(state.stats?.failed || 0);
   elements.lastCollected.textContent = state.lastCollectedAt ? new Date(state.lastCollectedAt).toLocaleTimeString() : "-";
 }
 

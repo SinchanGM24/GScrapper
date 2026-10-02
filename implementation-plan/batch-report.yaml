@@ -3,8 +3,8 @@ batch:
   date: "2026-10-02"
   plan: "implementation-plan/plan.md"
   requirements: [DAT-01, DAT-02, DAT-03, DAT-04, DAT-05, DAT-06, PRO-01, PRO-02, PRO-04, ANA-01, ANA-02, ANA-03, ANA-04, ANA-05, ANA-06]
-  tasks_completed: [T001, T002, T003, T004, T005, T006, T007, T008, T009, T010, T011, T012, T013, T014, T015, T016, T017, T018, T019, T020, T021, T022, T023, T024, T025, T026, T027, T028]
-  tasks_pending: [T029, T030, T031, T032, T033, T034, T035, T036, T037]
+  tasks_completed: [T001, T002, T003, T004, T005, T006, T007, T008, T009, T010, T011, T012, T013, T014, T015, T016, T017, T018, T019, T020, T021, T022, T023, T024, T025, T026, T027, T028, T029, T030, T031, T032]
+  tasks_pending: [T033, T034, T035, T036, T037]
 required_endpoints: []
 validation:
   npm_test: "PASS - 7 tests passed"
@@ -17,5 +17,5 @@ warnings:
   - severity: MEDIUM
     message: "Live Google Maps extraction remains selector-dependent and requires manual Chrome smoke testing."
   - severity: LOW
-    message: "Playwright E2E, manual collector hardening, and GitHub Actions deployment remain pending."
+    message: "Playwright E2E, final validation matrix, and GitHub Actions deployment remain pending."
 commit: "b94fe13"

@@ -6,9 +6,9 @@ metadata:
 
 summary:
   total_tasks_in_batch: 37
-  completed_tasks: 28
-  pending_tasks: 9
-  completion_percentage: 75.68
+  completed_tasks: 32
+  pending_tasks: 5
+  completion_percentage: 86.49
 
 completed:
   - task_id: "T001"
@@ -67,16 +67,16 @@ completed:
     evidence: ["analyzer/src/App.tsx", "analyzer/src/domain/recommendation.ts"]
   - task_id: "T028"
     evidence: ["analyzer/src/App.tsx"]
+  - task_id: "T029"
+    evidence: ["GScrapper Extension/content.js"]
+  - task_id: "T030"
+    evidence: ["GScrapper Extension/popup.js", "GScrapper Extension/popup.html"]
+  - task_id: "T031"
+    evidence: ["GScrapper Extension/README.md", "GScrapper Extension/fixtures/sample-dataset.json", "GScrapper Extension/fixtures/sample-dataset.csv"]
+  - task_id: "T032"
+    evidence: ["analyzer/src/import-export/extension-fixture.test.ts"]
 
 pending:
-  - task_id: "T029"
-    reason: "Collector selector hardening pending."
-  - task_id: "T030"
-    reason: "Collector progress counters pending."
-  - task_id: "T031"
-    reason: "Manual collector fixture/checklist pending."
-  - task_id: "T032"
-    reason: "Cross-import smoke fixture pending."
   - task_id: "T033"
     reason: "Playwright smoke flow pending."
   - task_id: "T034"

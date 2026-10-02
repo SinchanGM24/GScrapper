@@ -1,0 +1,33 @@
+{
+  "schemaName": "gmap-prospect-dataset",
+  "schemaVersion": "1.0",
+  "dataset": {
+    "datasetId": "ds_fixture_cafe_mataram",
+    "name": "Cafe - Mataram - Fixture",
+    "keyword": "Cafe",
+    "location": "Mataram",
+    "collectedAt": "2026-10-02T10:00:00Z",
+    "source": "gmap-collector",
+    "businesses": [
+      {
+        "businessId": "mapsurl_fixture_cafe_abc",
+        "name": "Cafe ABC",
+        "category": "Cafe",
+        "address": "Jl. Contoh No. 1, Mataram",
+        "phone": "+62 812 0000 0000",
+        "website": null,
+        "websiteStatus": "none",
+        "mapsUrl": "https://www.google.com/maps/place/Cafe+ABC",
+        "rating": 4.6,
+        "reviewCount": 327,
+        "openingHours": null,
+        "businessStatus": null,
+        "latitude": null,
+        "longitude": null,
+        "placeId": null,
+        "area": "Mataram",
+        "collectedAt": "2026-10-02T10:00:00Z"
+      }
+    ]
+  }
+}
