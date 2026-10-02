@@ -1,261 +1,257 @@
 # GMap Prospect Analyzer
 
-GMap Prospect Analyzer adalah alat prospecting untuk membantu freelancer, web developer, digital agency, dan digital marketer menemukan calon client dari bisnis yang muncul di Google Maps.
+GMap Prospect Analyzer membantu freelancer, web developer, digital agency, dan digital marketer menemukan serta memprioritaskan calon client dari bisnis yang ditemukan melalui Google Maps.
 
-Alat ini mengurangi pekerjaan membuka dan memeriksa bisnis satu per satu. Data bisnis dikumpulkan dari hasil pencarian Google Maps, kemudian dipindahkan ke aplikasi analyzer untuk dicari, dibandingkan, difilter, dan diprioritaskan berdasarkan indikator yang tersedia.
+Project ini terdiri dari dua bagian:
 
-> GMap Prospect Analyzer membantu menentukan bisnis mana yang perlu diperiksa terlebih dahulu. Potential score bukan kepastian bahwa sebuah bisnis membutuhkan website atau jasa digital.
+- **GMap Collector:** Chrome Extension Manifest V3 untuk mengambil data bisnis yang terlihat pada hasil Google Maps.
+- **GMap Analyzer:** Static Web App untuk mengimpor, menyimpan, mencari, memfilter, menganalisis, dan mengekspor dataset bisnis.
 
-## Kegunaan Project
+> Potential score adalah indikator prioritas berdasarkan data yang tersedia. Score bukan kepastian bahwa sebuah bisnis membutuhkan website atau jasa digital.
 
-Dengan project ini, user dapat:
+## Cara Menggunakan
 
-- Mengumpulkan banyak data bisnis dari satu pencarian Google Maps.
-- Mengetahui bisnis mana yang memiliki atau tidak memiliki website.
-- Melihat rating, jumlah review, kategori, alamat, dan nomor telepon dalam satu tabel.
-- Mencari dan memfilter bisnis berdasarkan kriteria prospecting.
-- Menemukan bisnis yang masuk kategori target.
-- Memprioritaskan bisnis menggunakan potential score yang transparan.
-- Memahami alasan sebuah bisnis mendapatkan score tertentu.
-- Membuka kembali Google Maps atau website bisnis.
-- Menyalin nomor telepon untuk kebutuhan riset atau outreach manual.
-- Mengekspor hasil sebagai CSV atau JSON.
-
-## Cara Kerja Secara Umum
+Alur penggunaan utama:
 
 ```text
 Google Maps
-    |
-    v
-GMap Collector
-    |
-    v
-JSON / CSV Dataset
-    |
-    v
-GMap Analyzer
-    |
-    +--> Search dan Filter
-    +--> Potential Analysis
-    +--> Recommendation
-    +--> Export
+    -> GMap Collector Extension
+    -> JSON / CSV
+    -> GMap Analyzer
+    -> Filter / Score / Recommendation
+    -> Export
 ```
 
-1. User melakukan pencarian di Google Maps, misalnya `Cafe Mataram`.
-2. GMap Collector membaca bisnis yang tersedia pada halaman hasil tersebut.
-3. Data dibersihkan dan dinormalisasi agar mudah dibandingkan.
-4. Bisnis duplicate dihindari menggunakan identitas bisnis yang stabil.
-5. User mengekspor hasil collection dalam format JSON atau CSV.
-6. Dataset diimpor ke GMap Analyzer.
-7. Analyzer menyimpan data secara lokal di browser dan menghitung potential untuk setiap bisnis.
-8. User menggunakan tabel, filter, dashboard, dan recommendation untuk menentukan prospek yang perlu diperiksa lebih dahulu.
-9. User dapat mengekspor seluruh dataset, hasil filter, atau bisnis yang dipilih.
+1. Instal extension ke Chrome.
+2. Buka Google Maps dan lakukan pencarian bisnis.
+3. Jalankan collection dari extension.
+4. Export hasil sebagai JSON atau CSV.
+5. Buka GMap Analyzer.
+6. Import file hasil collection.
+7. Gunakan tabel dan filter untuk memilih prospek.
+8. Buka detail bisnis, Google Maps, website, atau salin nomor telepon.
+9. Export hasil yang sudah dipilih atau difilter.
 
-## Komponen Project
+## Mengakses Analyzer Online
 
-### GMap Collector
+Jika GitHub Pages sudah aktif, buka:
 
-GMap Collector adalah Chrome Extension berbasis Chrome Extension Manifest V3. Fungsinya sebagai pengambil data, bukan sebagai dashboard analitik utama.
+```text
+https://sinchanggm24.github.io/GScrapper/
+```
 
-Data inti yang dikumpulkan jika tersedia:
+Analyzer berjalan sebagai static web app. Tidak membutuhkan login, backend, atau database cloud. Dataset disimpan lokal di browser menggunakan IndexedDB.
 
-- Nama bisnis
-- Kategori
-- Alamat
-- Nomor telepon
-- Website
-- Google Maps URL
-- Rating
-- Jumlah review
+Jika halaman belum tersedia, pemilik repository perlu memastikan GitHub Pages menggunakan source **GitHub Actions**, lalu menjalankan workflow **Deploy Analyzer to GitHub Pages** pada tab Actions.
 
-Data tambahan seperti jam buka, status bisnis, koordinat, atau place identifier hanya digunakan jika dapat dibaca dengan reliable dan memang tersedia.
+## Menjalankan Analyzer Secara Lokal
 
-Collector juga melakukan beberapa pekerjaan dasar:
+### Prasyarat
 
-- Membersihkan whitespace.
-- Mengubah rating dan jumlah review menjadi nilai numeric.
-- Menentukan status website.
-- Menghindari bisnis duplicate.
-- Menampilkan progress collection.
-- Melaporkan hasil berhasil, duplicate, dan data yang gagal dibaca.
-- Mengekspor dataset sebagai JSON atau CSV.
+- Node.js 20 atau lebih baru
+- npm
+- Google Chrome jika ingin menggunakan Collector
 
-### GMap Analyzer
+### Menjalankan
 
-GMap Analyzer adalah Static Web App yang menjadi pusat pengelolaan dan analisis dataset.
+Dari root repository:
 
-Fungsi utamanya:
+```bash
+cd analyzer
+npm install
+npm run dev
+```
 
-- Import dataset JSON dan CSV.
-- Menyimpan data di browser user.
-- Menggabungkan beberapa dataset.
-- Menghapus dataset.
-- Deduplicate bisnis saat import atau merge.
-- Menampilkan tabel prospects.
-- Search, filter, dan sorting.
-- Menghitung potential score.
-- Menampilkan alasan potential.
-- Menampilkan ringkasan dan analytics.
-- Menampilkan recommended prospects.
-- Export data sebagai CSV atau JSON.
+Buka URL yang ditampilkan Vite, biasanya:
 
-Karena bersifat local-first, data dataset tetap berada di browser user dan tidak membutuhkan backend atau database cloud untuk penggunaan dasar.
+```text
+http://localhost:5173/GScrapper/
+```
 
-## Data yang Dilihat User
+Perintah lain yang tersedia:
 
-Setiap bisnis dapat memiliki informasi berikut:
+```bash
+npm test       # unit dan integration tests
+npm run build  # production build
+npm run lint   # lint
+npm run test:e2e
+```
 
-- `businessId`: identitas stabil untuk deduplication.
-- `name`: nama bisnis.
-- `category`: kategori bisnis.
-- `address`: alamat yang ditampilkan Google Maps.
-- `phone`: nomor telepon bila tersedia.
-- `website`: URL website bila tersedia.
-- `websiteStatus`: `present`, `none`, atau `unknown`.
-- `mapsUrl`: tautan ke Google Maps.
-- `rating`: rating numeric dari 0 sampai 5.
-- `reviewCount`: jumlah review numeric.
-- `area`: area bila dapat ditentukan secara reliable.
-- Field optional lain bila tersedia dengan reliable.
+## Instalasi GMap Collector Extension
 
-Status website dibedakan dengan jelas:
+Extension belum dipasang melalui Chrome Web Store. Instal menggunakan mode **Load unpacked**.
 
-- `present`: website tersedia.
-- `none`: terdapat indikasi bisnis tidak memiliki website yang ditampilkan.
-- `unknown`: informasi website tidak berhasil diketahui.
+1. Clone atau download repository ini.
+2. Buka Google Chrome.
+3. Buka:
 
-Status `unknown` tidak dianggap sama dengan tidak memiliki website.
+   ```text
+   chrome://extensions
+   ```
 
-## Potential Score
+4. Aktifkan **Developer mode** di kanan atas.
+5. Klik **Load unpacked**.
+6. Pilih folder berikut:
 
-Potential score adalah rule-based indicator untuk membantu mengurutkan prospek. Perhitungannya dapat dijelaskan dan tidak menggunakan AI.
+   ```text
+   D:\Project\Gscrap\GScrapper Extension
+   ```
 
-Default indikatornya adalah:
+   Jika repository berada di lokasi lain, pilih folder `GScrapper Extension` di dalam folder repository tersebut.
+
+7. Pastikan extension **GMap Collector** muncul tanpa error.
+8. Pin extension melalui ikon puzzle Chrome agar mudah dibuka.
+
+Panduan khusus extension tersedia di [GScrapper Extension/README.md](GScrapper%20Extension/README.md). Checklist pengujian manual tersedia di [GScrapper Extension/SMOKE-TEST.md](GScrapper%20Extension/SMOKE-TEST.md).
+
+## Mengumpulkan Data dari Google Maps
+
+1. Buka Google Maps.
+2. Cari bisnis, misalnya `Cafe Mataram`.
+3. Scroll hasil pencarian agar lebih banyak result card terlihat.
+4. Klik ikon **GMap Collector**.
+5. Isi:
+   - Nama dataset
+   - Keyword
+   - Lokasi
+6. Klik **Collect hasil terlihat**.
+7. Periksa jumlah:
+   - Processed
+   - Collected
+   - Duplicate
+   - Failed
+8. Klik **Export JSON** untuk Analyzer atau **Export CSV** untuk spreadsheet.
+
+Collector menghindari duplicate berdasarkan `businessId`. Struktur DOM Google Maps dapat berubah, sehingga collection hanya menjanjikan data yang berhasil dibaca dari halaman saat itu.
+
+## Import Dataset ke Analyzer
+
+1. Buka Analyzer online atau jalankan Analyzer secara lokal.
+2. Klik **Import dataset**.
+3. Pilih file `.json` atau `.csv` dari Collector.
+4. Analyzer memvalidasi schema, menormalisasi data, dan menyimpan dataset di browser.
+5. Setelah import, halaman Prospects akan menampilkan data bisnis.
+
+Fixture untuk mencoba import tanpa melakukan collection tersedia di:
+
+- [sample-dataset.json](GScrapper%20Extension/fixtures/sample-dataset.json)
+- [sample-dataset.csv](GScrapper%20Extension/fixtures/sample-dataset.csv)
+
+## Fitur Analyzer
+
+### Overview
+
+Menampilkan total bisnis, website availability, phone availability, dan distribusi High, Medium, serta Low potential.
+
+### Prospects
+
+Tabel utama menyediakan:
+
+- Search nama, kategori, alamat, atau nomor telepon
+- Filter potential
+- Filter website status
+- Filter kategori
+- Sorting score, rating, review, atau nama
+- Detail bisnis
+- Open Google Maps
+- Open website
+- Copy phone
+- Select dan export bisnis tertentu
+- Export hasil filter
+
+### Analytics
+
+Menampilkan distribusi kategori dan ringkasan website availability dari dataset aktif.
+
+### Datasets
+
+Memungkinkan user memilih dan menghapus dataset yang tersimpan di browser.
+
+### Settings
+
+User dapat memasukkan kategori target, misalnya:
+
+```text
+Cafe, Restaurant, Hotel
+```
+
+Kategori target akan memengaruhi potential score dan recommendation.
+
+## Potential Scoring
+
+Scoring menggunakan rule-based calculation yang transparan.
 
 | Indikator | Poin |
 |---|---:|
-| Tidak memiliki website | +40 |
-| Termasuk kategori target | +20 |
-| Memiliki nomor telepon | +10 |
-| Rating minimal 4.0 | +10 |
-| Memiliki minimal 100 review | +10 |
-| Memiliki minimal 500 review | +10 |
+| Tidak memiliki website | +25 |
+| Memiliki nomor telepon | +25 |
+| Memiliki social media tanpa nomor telepon | +25 |
+| Termasuk kategori target | +15 |
+| Rating minimal 4.0 | +5 |
+| Minimal 100 review | +5 |
+| Minimal 500 review | +5 |
 
-Label potential:
+Nomor telepon dan social media adalah jalur kontak alternatif. Jika nomor telepon tersedia, social media tidak menambah score agar contactability tidak dihitung dua kali.
+
+Klasifikasi:
 
 - **High:** 80-100
 - **Medium:** 50-79
 - **Low:** 0-49
 
-Contoh: bisnis tanpa website, masuk kategori target, memiliki nomor telepon, rating 4.6, dan 327 review memperoleh `90` dan dikategorikan sebagai **High**.
+## Data yang Dikumpulkan
 
-Alasan yang ditampilkan selalu berasal dari indikator yang benar-benar terpenuhi, misalnya:
+Field utama yang dapat dikumpulkan:
 
-- Tidak memiliki website
-- Termasuk kategori target
-- Memiliki nomor telepon
-- Rating minimal 4.0
-- Memiliki minimal 100 review
+- `businessId`
+- `name`
+- `category`
+- `address`
+- `phone`
+- `socialMedia`
+- `website`
+- `websiteStatus`
+- `mapsUrl`
+- `rating`
+- `reviewCount`
 
-Score ini hanya menunjukkan prioritas berdasarkan data yang tersedia. User tetap perlu melakukan pemeriksaan dan penilaian sendiri sebelum menghubungi bisnis.
+Field tambahan seperti opening hours, business status, latitude, longitude, dan place ID hanya digunakan jika tersedia secara reliable.
 
-## Fitur Utama Analyzer
+## Format File
 
-### Overview
+- **JSON:** menyimpan metadata dataset dan daftar bisnis lengkap.
+- **CSV:** format flat untuk spreadsheet dan export hasil filter.
 
-Memberikan ringkasan dataset aktif, seperti:
+Kontrak data resmi berada di [DATA-SCHEMA.md](DATA-SCHEMA.md).
 
-- Total bisnis.
-- Bisnis tanpa website.
-- Bisnis dengan website.
-- Bisnis dengan nomor telepon.
-- Jumlah High, Medium, dan Low potential.
+## Local-first dan Privasi
 
-### Prospects
+- Dataset disimpan di browser user.
+- Tidak ada account atau login.
+- Tidak ada backend atau cloud database untuk MVP.
+- Data tidak dikirim ke server oleh Analyzer.
+- Collector hanya membaca data yang terlihat dan tersedia pada halaman Google Maps.
+- User bertanggung jawab mematuhi terms, hukum, dan aturan platform yang berlaku.
 
-Tabel utama untuk melihat banyak bisnis sekaligus. Tabel menampilkan informasi bisnis, website status, rating, review, potential, score, dan reason.
+## Batasan Project
 
-User dapat:
+Project ini tidak mencakup:
 
-- Mencari bisnis.
-- Memfilter beberapa kondisi sekaligus.
-- Mengurutkan berdasarkan score, rating, atau review.
-- Melihat detail bisnis.
-- Membuka Google Maps.
-- Membuka website bila tersedia.
-- Menyalin nomor telepon.
-- Mengekspor bisnis yang dipilih.
+- Backend API
+- Authentication
+- Cloud database
+- CRM
+- Contact management
+- Follow-up tracking
+- Email automation
+- Reminder
+- Multi-user collaboration
+- AI lead qualification
 
-Contoh filter yang berguna:
-
-```text
-Website status: No website
-Potential: High
-Category: Cafe
-```
-
-### Analytics
-
-Analytics membantu user memahami dataset secara cepat melalui jumlah dan chart yang relevan, termasuk:
-
-- Distribusi kategori.
-- Perbandingan bisnis dengan dan tanpa website.
-- Distribusi High, Medium, dan Low potential.
-- Bisnis dengan score tertinggi.
-- Perbandingan area jika data lokasi tersedia.
-
-Analytics tidak dimaksudkan untuk membuat klaim di luar informasi yang ada di dataset.
-
-### Recommendations
-
-Recommendation menampilkan bisnis yang layak diperiksa lebih dahulu berdasarkan score, label potential, dan tie-breaker yang konsisten.
-
-Setiap recommendation dapat menampilkan:
-
-- Nama bisnis.
-- Potential dan score.
-- Alasan score.
-- Rating dan jumlah review.
-- Status website.
-- Link Google Maps bila tersedia.
-
-Recommendation membantu menentukan urutan kerja, bukan menggantikan keputusan user.
-
-## Format Dataset
-
-Project ini menggunakan dua format pertukaran:
-
-- **JSON:** menyimpan metadata dataset dan daftar bisnis secara lengkap.
-- **CSV:** format flat yang mudah dibuka di spreadsheet dan digunakan untuk export hasil filter.
-
-Dataset dapat diberi metadata seperti:
-
-- Nama dataset.
-- Keyword pencarian.
-- Lokasi pencarian.
-- Jumlah bisnis.
-- Waktu collection.
-
-Saat dataset digabungkan, record dengan `businessId` sama hanya disimpan satu kali. Data yang lebih lengkap dapat dipertahankan selama tidak mengarang nilai.
-
-## Privasi dan Batasan
-
-- Data disimpan secara lokal di browser pada penggunaan Analyzer.
-- Project ini tidak membutuhkan account, login, backend, atau cloud database untuk fungsi dasarnya.
-- Collector hanya mengambil data yang tersedia dan dapat dibaca dari halaman Google Maps saat itu.
-- Hasil collection tidak selalu lengkap karena struktur halaman dan ketersediaan data dapat berubah.
-- Project ini tidak dimaksudkan untuk bypass pembatasan platform.
-- User bertanggung jawab menggunakan data secara wajar dan mematuhi terms, hukum, serta aturan platform yang berlaku.
-- Potential score tidak boleh digunakan sebagai bukti pasti bahwa sebuah bisnis membutuhkan layanan tertentu.
-
-## Batasan Fitur Saat Ini
-
-Project ini berfokus pada collection, import, analisis, prioritas, dan export data prospek. Fitur seperti CRM, pengelolaan kontak, follow-up, reminder, email automation, kolaborasi multi-user, dan AI qualification bukan bagian dari fungsi dasar project ini.
-
-## Dokumentasi Terkait
+## Dokumentasi Teknis
 
 - [PRD.md](PRD.md) - kebutuhan dan perilaku produk.
-- [ARCHITECTURE.md](ARCHITECTURE.md) - struktur teknis dan pembagian modul.
-- [DATA-SCHEMA.md](DATA-SCHEMA.md) - kontrak data JSON, CSV, dan dataset.
-- [SCORING.md](SCORING.md) - detail rule scoring dan recommendation.
+- [ARCHITECTURE.md](ARCHITECTURE.md) - struktur teknis.
+- [DATA-SCHEMA.md](DATA-SCHEMA.md) - kontrak JSON, CSV, dan dataset.
+- [SCORING.md](SCORING.md) - rule scoring dan recommendation.
 - [AGENTS.md](AGENTS.md) - aturan kerja repository.
