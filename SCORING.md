@@ -16,7 +16,7 @@ UI wajib menggunakan frasa seperti **Potential berdasarkan indikator yang tersed
     "noWebsite": 25,
     "targetCategory": 15,
     "phoneAvailable": 25,
-    "socialMediaAvailable": 20,
+    "socialMediaAvailable": 25,
     "ratingAtLeast4": 5,
     "reviewsAtLeast100": 5,
     "reviewsAtLeast500": 5
@@ -37,13 +37,13 @@ UI wajib menggunakan frasa seperti **Potential berdasarkan indikator yang tersed
 |---|---|---:|---|
 | `noWebsite` | `websiteStatus === "none"` | 25 | Tidak memiliki website |
 | `phoneAvailable` | `phone` bukan null dan tidak kosong | 25 | Memiliki nomor telepon |
-| `socialMediaAvailable` | `socialMedia` memiliki minimal satu URL valid | 20 | Memiliki akun sosial media |
+| `socialMediaAvailable` | `phone` kosong dan `socialMedia` memiliki minimal satu URL valid | 25 | Memiliki akun sosial media sebagai jalur kontak alternatif |
 | `targetCategory` | normalized category cocok dengan `targetCategories` | 15 | Termasuk kategori target |
 | `ratingAtLeast4` | `rating !== null && rating >= 4.0` | 5 | Rating minimal 4.0 |
 | `reviewsAtLeast100` | `reviewCount !== null && reviewCount >= 100` | 5 | Memiliki minimal 100 reviews |
 | `reviewsAtLeast500` | `reviewCount !== null && reviewCount >= 500` | 5 | Memiliki minimal 500 reviews |
 
-Semua rule bersifat additive. `reviewsAtLeast100` dan `reviewsAtLeast500` boleh sama-sama aktif; bisnis dengan 500 reviews mendapat kedua poin tersebut.
+Semua rule bersifat additive, kecuali `phoneAvailable` dan `socialMediaAvailable` yang merupakan jalur contactability alternatif. Jika nomor telepon tersedia, social media tidak menambah score. Jika nomor telepon tidak tersedia tetapi social media tersedia, social media mengambil bobot contactability yang sama. `reviewsAtLeast100` dan `reviewsAtLeast500` boleh sama-sama aktif; bisnis dengan 500 reviews mendapat kedua poin tersebut.
 
 ## 4. Classification
 
@@ -62,6 +62,7 @@ Threshold bersifat inclusive pada batas bawah label masing-masing.
 - `websiteStatus: unknown` tidak memenuhi `noWebsite`.
 - `phone: null` tidak memenuhi `phoneAvailable`.
 - `socialMedia: null` atau array kosong tidak memenuhi `socialMediaAvailable`.
+- Jika `phone` tersedia, `socialMediaAvailable` sengaja tidak diberikan agar satu bisnis tidak mendapat double-counting contactability.
 - `rating: null` tidak memenuhi rule rating.
 - `reviewCount: null` tidak memenuhi rule review.
 - `category: null` tidak memenuhi target category.
@@ -73,12 +74,11 @@ Threshold bersifat inclusive pada batas bawah label masing-masing.
 ```json
 {
   "businessId": "mapsurl_abc123",
-  "score": 90,
+  "score": 80,
   "potential": "high",
   "reasons": [
     "Tidak memiliki website",
     "Memiliki nomor telepon",
-    "Memiliki akun sosial media",
     "Rating minimal 4.0",
     "Memiliki minimal 100 reviews",
     "Memiliki minimal 500 reviews"
@@ -86,8 +86,8 @@ Threshold bersifat inclusive pada batas bawah label masing-masing.
   "appliedRules": [
     "noWebsite",
     "phoneAvailable",
-    "socialMediaAvailable",
     "ratingAtLeast4",
+    "targetCategory",
     "reviewsAtLeast100",
     "reviewsAtLeast500"
   ],
@@ -116,7 +116,7 @@ Rule order default:
 
 1. `noWebsite`
 2. `phoneAvailable`
-3. `socialMediaAvailable`
+3. `socialMediaAvailable` (hanya jika phone tidak tersedia)
 4. `targetCategory`
 5. `ratingAtLeast4`
 6. `reviewsAtLeast100`
@@ -159,10 +159,10 @@ MVP boleh menggunakan default config tanpa UI konfigurasi penuh. Jika configurat
 - `websiteStatus: none` = 25
 - kategori target = 15
 - phone tersedia = 25
-- sosial media tersedia = 20
+- sosial media tersedia tetapi tidak dihitung karena phone tersedia
 - rating 4.6 = 5
-- reviews 327 = 5
-- total = 95 -> `high`
+- reviews 500 = 10
+- total = 80 -> `high`
 
 ### Example B: Low
 
@@ -192,7 +192,7 @@ Record tidak mendapat 40 poin no website karena status website tidak diketahui.
 4. Record dengan `websiteStatus: unknown` tidak mendapat poin `noWebsite`.
 5. Record dengan `reviewCount: 500` mendapat poin rule 100 dan 500.
 6. Record tanpa website, phone, dan social media tetap `low` walaupun rating dan review tinggi.
-7. Record dengan phone dan social media dapat mencapai `high` bersama rule no-website.
+7. Record dengan phone dan social media dapat mencapai `high` bersama rule no-website, tetapi hanya phone yang mendapat poin contactability.
 8. Reason count sama dengan applied rule count.
 9. Setiap reason memiliki applied rule yang sesuai.
 10. Dua record dengan input dan config sama menghasilkan result byte-for-byte yang sama kecuali ordering object yang tidak relevan.

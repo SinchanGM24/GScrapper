@@ -74,7 +74,7 @@ export const defaultScoringConfig: ScoringConfig = {
     noWebsite: 25,
     targetCategory: 15,
     phoneAvailable: 25,
-    socialMediaAvailable: 20,
+    socialMediaAvailable: 25,
     ratingAtLeast4: 5,
     reviewsAtLeast100: 5,
     reviewsAtLeast500: 5,

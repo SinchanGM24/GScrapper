@@ -11,7 +11,7 @@ type Rule = {
 const rules: Rule[] = [
   { id: "noWebsite", points: 25, reason: "Tidak memiliki website", matches: (b) => b.websiteStatus === "none" },
   { id: "phoneAvailable", points: 25, reason: "Memiliki nomor telepon", matches: (b) => Boolean(b.phone) },
-  { id: "socialMediaAvailable", points: 20, reason: "Memiliki akun sosial media", matches: (b) => Boolean(b.socialMedia?.length) },
+  { id: "socialMediaAvailable", points: 25, reason: "Memiliki akun sosial media", matches: (b) => !b.phone && Boolean(b.socialMedia?.length) },
   { id: "targetCategory", points: 15, reason: "Termasuk kategori target", matches: (b, c) => Boolean(b.category && c.targetCategories.some((target) => target.trim().toLowerCase() === b.category?.trim().toLowerCase())) },
   { id: "ratingAtLeast4", points: 5, reason: "Rating minimal 4.0", matches: (b) => b.rating !== null && b.rating >= 4 },
   { id: "reviewsAtLeast100", points: 5, reason: "Memiliki minimal 100 reviews", matches: (b) => b.reviewCount !== null && b.reviewCount >= 100 },
