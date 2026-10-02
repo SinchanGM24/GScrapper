@@ -6,9 +6,9 @@ metadata:
 
 summary:
   total_tasks_in_batch: 37
-  completed_tasks: 26
-  pending_tasks: 11
-  completion_percentage: 70.27
+  completed_tasks: 28
+  pending_tasks: 9
+  completion_percentage: 75.68
 
 completed:
   - task_id: "T001"
@@ -55,6 +55,10 @@ completed:
     evidence: ["analyzer/src/App.tsx"]
   - task_id: "T022"
     evidence: ["analyzer/src/App.tsx", "analyzer/src/domain/filtering.ts"]
+  - task_id: "T023"
+    evidence: ["analyzer/src/App.tsx", "analyzer/src/App.css"]
+  - task_id: "T024"
+    evidence: ["analyzer/src/App.test.tsx"]
   - task_id: "T025"
     evidence: ["analyzer/src/App.tsx"]
   - task_id: "T026"
@@ -65,10 +69,6 @@ completed:
     evidence: ["analyzer/src/App.tsx"]
 
 pending:
-  - task_id: "T023"
-    reason: "Detail panel and per-row actions not yet implemented."
-  - task_id: "T024"
-    reason: "UI component tests not yet implemented."
   - task_id: "T029"
     reason: "Collector selector hardening pending."
   - task_id: "T030"

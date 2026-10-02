@@ -104,8 +104,8 @@ Tasks:
 - [x] T020 [Plan:5.1] Implementasikan dataset list/import/delete UI di `analyzer/src/App.tsx`.
 - [x] T021 [Plan:5.2] Implementasikan prospect table dengan canonical columns, empty state, error notice, dan responsive states di `analyzer/src/App.tsx`.
 - [x] T022 [P] [Plan:5.2] Tambahkan search, multi-filter, dan sort controls di `analyzer/src/App.tsx`.
-- [ ] T023 [P] [Plan:5.2] Tambahkan detail panel dan actions open Maps, open website, copy phone, serta export selected.
-- [ ] T024 [P] [Plan:5.2] Tambahkan component tests untuk filter kombinasi, table columns, empty state, error state, dan action links.
+- [x] T023 [P] [Plan:5.2] Tambahkan detail panel dan actions open Maps, open website, copy phone, serta export selected.
+- [x] T024 [P] [Plan:5.2] Tambahkan component tests untuk filter kombinasi, table columns, empty state, error state, dan action links.
 
 ### Step 6: [Cross-cutting] Overview, analytics, recommendation, and settings UI
 
