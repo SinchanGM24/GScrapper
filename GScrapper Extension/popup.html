@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GMap Collector</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header>
+        <p class="eyebrow">GMap Collector</p>
+        <h1>Kumpulkan prospek</h1>
+        <p class="muted">Buka hasil pencarian Google Maps terlebih dahulu.</p>
+      </header>
+
+      <section class="form-grid" aria-label="Informasi dataset">
+        <label>
+          Nama dataset
+          <input id="dataset-name" type="text" placeholder="Cafe - Mataram" />
+        </label>
+        <label>
+          Keyword
+          <input id="keyword" type="text" placeholder="Cafe" />
+        </label>
+        <label>
+          Lokasi
+          <input id="location" type="text" placeholder="Mataram" />
+        </label>
+      </section>
+
+      <button id="collect" class="primary" type="button">Collect hasil terlihat</button>
+      <p id="status" class="status" role="status">Belum ada collection.</p>
+
+      <section class="stats" aria-label="Ringkasan collection">
+        <div><strong id="business-count">0</strong><span>bisnis</span></div>
+        <div><strong id="last-collected">-</strong><span>terakhir dikumpulkan</span></div>
+      </section>
+
+      <section class="actions" aria-label="Export dataset">
+        <button id="export-json" type="button">Export JSON</button>
+        <button id="export-csv" type="button">Export CSV</button>
+        <button id="clear" class="danger" type="button">Hapus hasil</button>
+      </section>
+
+      <p class="hint">Data tersimpan lokal di browser extension ini. Website Analyzer dapat mengimpor file hasil export.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

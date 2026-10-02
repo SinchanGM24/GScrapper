@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "GMap Collector",
+  "version": "0.1.0",
+  "description": "Mengumpulkan data bisnis yang terlihat pada hasil Google Maps untuk GMap Prospect Analyzer.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://www.google.com/maps/*", "https://maps.google.com/*"],
+  "action": {
+    "default_title": "GMap Collector",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/maps/*", "https://maps.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
